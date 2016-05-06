@@ -10,7 +10,31 @@
     tools:context="com.example.jumana.myweatherbuddy.MainActivity">
 
     <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/CityName"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:id="@+id/editText"
+        android:layout_marginTop="61dp"
+        android:elegantTextHeight="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/CityName"
+        android:layout_alignStart="@+id/CityName" />
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/CityName" />
+        android:text="Search"
+        android:id="@+id/button"
+        android:layout_alignBottom="@+id/editText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/editText"
+        android:layout_toEndOf="@+id/editText" />
+
 </RelativeLayout>
