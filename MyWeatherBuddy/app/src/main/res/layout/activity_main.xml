@@ -7,7 +7,18 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/layoutId"
+    android:background="@color/black"
     tools:context="com.example.jumana.myweatherbuddy.MainActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType = "centerCrop"
+        android:id="@+id/background"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="left|bottom" />
 
     <TextView
         android:layout_width="250dp"
@@ -15,7 +26,9 @@
         android:id="@+id/CityName"
         android:layout_marginTop="32dp"
         android:layout_below="@+id/editText"
+        android:textColor="@color/white"
         android:layout_centerHorizontal="true" />
+
 
     <Button android:id="@+id/btnShowLocation"
         android:layout_width="wrap_content"
@@ -23,6 +36,15 @@
         android:text="Use current Location"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <Button android:id="@+id/changeTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change theme"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button"
+        android:layout_marginBottom="44dp" />
 
     <EditText
         android:layout_width="200dp"
@@ -32,6 +54,7 @@
         android:elegantTextHeight="false"
         android:layout_below="@+id/btnShowLocation"
         android:layout_alignLeft="@+id/CityName"
+        android:textColor="@color/white"
         android:layout_alignStart="@+id/CityName" />
 
     <Button
@@ -44,5 +67,15 @@
         android:layout_alignParentEnd="true"
         android:layout_toRightOf="@+id/editText"
         android:layout_toEndOf="@+id/editText" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/CityName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="81dp"
+        android:layout_gravity="left|bottom" />
 
 </RelativeLayout>

@@ -1,5 +1,9 @@
 package com.example.jumana.myweatherbuddy;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -8,10 +12,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.jumana.myweatherbuddy.data.model.City;
+import com.example.jumana.myweatherbuddy.data.model.Main;
 import com.example.jumana.myweatherbuddy.data.remote.WeatherAPI;
+import com.example.jumana.myweatherbuddy.themes.MainTheme;
+import com.example.jumana.myweatherbuddy.themes.Utils;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -24,17 +33,26 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     public static final String APPID = "a74b07463901e2cc9c3ea58f5b55ba3e";
+    public static final String MyPREFERENCES = "MyPrefs";
+    public static Context mcontext;
+    public static Activity mActivity;
+
     TextView cityname;
+    ImageView imageview;
     DecimalFormat oneDigit = new DecimalFormat("#,##0.0");
     Button btnShowLocation;
     // GPSTracker class
     GPSTracker gps;
+    Button changetheme;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.mActivity = this;
+        this.mcontext = MainActivity.this;
+        Utils.onActivityCreateSetTheme(this, MyPREFERENCES, MainActivity.this);
 
         btnShowLocation = (Button) findViewById(R.id.btnShowLocation);
 
@@ -89,11 +107,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        changetheme = (Button) findViewById(R.id.changeTheme);
+        changetheme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MainActivity.this, MainTheme.class);
+                MainActivity.this.startActivity(myIntent);
+            }
+        });
+
     }
 
     //Fonction d'affichage du code
     public void Launch(String search) {
-        WeatherAPI.Factory.getInstance().getCity(search, APPID).enqueue(new Callback<City>() {
+        WeatherAPI.Factory.getInstance().getCity(search, APPID, "fr").enqueue(new Callback<City>() {
             @Override
             public void onResponse(Call<City> call, Response<City> response) {
                 String name = "City : " + response.body().getName() + "\n";
@@ -107,6 +135,13 @@ public class MainActivity extends AppCompatActivity {
                 String wind_deg = "Wind Degree : " + response.body().getWind().getDeg().toString() + "\n";
                 cityname = (TextView) findViewById(R.id.CityName);
                 cityname.setText(name + weather + temp + temp_min + temp_max + humidity + clouds + wind_speed + wind_deg);
+                String uri = "@drawable/a"+response.body().getWeather().get(0).getIcon();
+
+                int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+
+                imageview = (ImageView)findViewById(R.id.imageView);
+                Drawable res = getResources().getDrawable(imageResource);
+                imageview.setImageDrawable(res);
             }
 
             @Override
@@ -115,5 +150,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-}
+    }
 

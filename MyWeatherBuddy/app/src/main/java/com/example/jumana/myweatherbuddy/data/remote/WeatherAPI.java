@@ -14,7 +14,7 @@ public interface WeatherAPI {
     String BASE_URL = "http://api.openweathermap.org/";
 
     @GET("/data/2.5/weather")
-    Call<City> getCity(@Query("q") String query, @Query("appid") String id);
+    Call<City> getCity(@Query("q") String query, @Query("appid") String id, @Query("lang") String lang);
 
     class Factory {
 
