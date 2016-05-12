@@ -3,17 +3,22 @@ package com.example.jumana.myweatherbuddy;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.jumana.myweatherbuddy.data.model.City;
@@ -24,6 +29,8 @@ import com.example.jumana.myweatherbuddy.themes.Utils;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -33,18 +40,17 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     public static final String APPID = "a74b07463901e2cc9c3ea58f5b55ba3e";
-    public static final String MyPREFERENCES = "MyPrefs";
     public static Context mcontext;
     public static Activity mActivity;
-
+    Button params;
+    CardView cardView;
+    CardView secondCardView;
     TextView cityname;
+    TextView weather;
+    TextView Desc;
     ImageView imageview;
+    ListView maListViewPerso;
     DecimalFormat oneDigit = new DecimalFormat("#,##0.0");
-    Button btnShowLocation;
-    // GPSTracker class
-    GPSTracker gps;
-    Button changetheme;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,89 +58,41 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.mActivity = this;
         this.mcontext = MainActivity.this;
-        Utils.onActivityCreateSetTheme(this, MyPREFERENCES, MainActivity.this);
+        Utils.onActivityCreateSetTheme(this, Params.MyPREFERENCES, MainActivity.mcontext);
 
-        btnShowLocation = (Button) findViewById(R.id.btnShowLocation);
-
-        // show location button click event
-        btnShowLocation.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                cityname = (TextView) findViewById(R.id.CityName);
-                cityname.setText("");
-                // create class object
-                gps = new GPSTracker(MainActivity.this);
-
-                // check if GPS enabled
-                if(gps.canGetLocation()){
-
-                    double latitude = gps.getLatitude();
-                    double longitude = gps.getLongitude();
-
-                    String msg = "Your Location is - \nLat: " + latitude + "\nLong: " + longitude;
-                    Geocoder gcd = new Geocoder(MainActivity.this, Locale.getDefault());
-                    List<Address> addresses = null;
-                    try {
-                        addresses = gcd.getFromLocation(latitude, longitude, 1);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    if (addresses.size() > 0) {
-                        msg = addresses.get(0).getLocality();
-                        //ici la requette avec l'addresse de géolocalisation
-                        Launch(msg);
-                    }
-
-                }else{
-                    gps.showSettingsAlert();
-                }
-
-            }
-        });
-
-        final EditText editText = (EditText) findViewById(R.id.editText);
-        Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        params = (Button) findViewById(R.id.params);
+        params.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String search = editText.getText().toString();
-
-                if (search != "" && search != null && !search.isEmpty()) {
-                    Launch(search);
-                }
-
-            }
-        });
-
-
-        changetheme = (Button) findViewById(R.id.changeTheme);
-        changetheme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent myIntent = new Intent(MainActivity.this, MainTheme.class);
+                Intent myIntent = new Intent(MainActivity.this, Params.class);
                 MainActivity.this.startActivity(myIntent);
             }
         });
 
-    }
+        SharedPreferences sharedpreferences;
+        sharedpreferences = MainActivity.this.getSharedPreferences(Params.MyPREFERENCES, MainActivity.MODE_PRIVATE);
+        String search = sharedpreferences.getString("search", "error : no city");
 
-    //Fonction d'affichage du code
-    public void Launch(String search) {
         WeatherAPI.Factory.getInstance().getCity(search, APPID, "fr").enqueue(new Callback<City>() {
             @Override
             public void onResponse(Call<City> call, Response<City> response) {
-                String name = "City : " + response.body().getName() + "\n";
-                String weather = "Weather : " + response.body().getWeather().get(0).getMain() + " (" + response.body().getWeather().get(0).getDescription() + ")\n";
-                String temp = "Temperature : " + oneDigit.format(response.body().getMain().getTemp() - 273.15) + "°\n";
-                String temp_min = "Temparature minimum : " + oneDigit.format(response.body().getMain().getTempMin() - 273.15) + "°\n";
-                String temp_max = "Temparature maximum : " + oneDigit.format(response.body().getMain().getTempMax() - 273.15) + "°\n";
-                String humidity = "Humidity : " + response.body().getMain().getHumidity().toString() + "\n";
-                String clouds = "Clouds : " + response.body().getClouds().getAll().toString() + "\n";
-                String wind_speed = "Wind speed : " + response.body().getWind().getSpeed().toString() + "\n";
-                String wind_deg = "Wind Degree : " + response.body().getWind().getDeg().toString() + "\n";
+                String name = response.body().getName() + "\n";
+                String desc = response.body().getWeather().get(0).getMain() + " (" + response.body().getWeather().get(0).getDescription() + ")\n";
+                String temp = oneDigit.format(response.body().getMain().getTemp() - 273.15) + "°\n";
+                String temp_min_max =  oneDigit.format(response.body().getMain().getTempMin() - 273.15) + "° - " + oneDigit.format(response.body().getMain().getTempMax() - 273.15) + "°\n";
+                String humidity = response.body().getMain().getHumidity().toString() + "\n";
+                String clouds = response.body().getClouds().getAll().toString() + "\n";
+                String wind_speed = response.body().getWind().getSpeed().toString() + " Km/h\n";
+                String pression = response.body().getMain().getPressure().toString() + "\n";
                 cityname = (TextView) findViewById(R.id.CityName);
-                cityname.setText(name + weather + temp + temp_min + temp_max + humidity + clouds + wind_speed + wind_deg);
+                weather = (TextView) findViewById(R.id.ActualTemp);
+                Desc = (TextView) findViewById(R.id.Desc);
+                cardView = (CardView) findViewById(R.id.FirstCardView);
+                secondCardView = (CardView) findViewById(R.id.SecondCardView);
+
+                cityname.setText(name);
+                weather.setText(temp);
+                Desc.setText(desc);
                 String uri = "@drawable/a"+response.body().getWeather().get(0).getIcon();
 
                 int imageResource = getResources().getIdentifier(uri, null, getPackageName());
@@ -142,6 +100,47 @@ public class MainActivity extends AppCompatActivity {
                 imageview = (ImageView)findViewById(R.id.imageView);
                 Drawable res = getResources().getDrawable(imageResource);
                 imageview.setImageDrawable(res);
+
+                maListViewPerso = (ListView) findViewById(R.id.listviewperso);
+                ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
+                HashMap<String, String> map;
+
+                map = new HashMap<String, String>();
+                map.put("titre", "Temperature Min - Max");
+                map.put("description", temp_min_max);
+                map.put("img", String.valueOf(R.drawable.thermometer));
+                listItem.add(map);
+
+                map = new HashMap<String, String>();
+                map.put("titre", "Humidity");
+                map.put("description", humidity);
+                map.put("img", String.valueOf(R.drawable.humidity));
+                listItem.add(map);
+
+                map = new HashMap<String, String>();
+                map.put("titre", "Clouds");
+                map.put("description", clouds);
+                map.put("img", String.valueOf(R.drawable.clouds));
+                listItem.add(map);
+
+                map = new HashMap<String, String>();
+                map.put("titre", "Wind Speed");
+                map.put("description", wind_speed);
+                map.put("img", String.valueOf(R.drawable.wind));
+                listItem.add(map);
+
+                map = new HashMap<String, String>();
+                map.put("titre", "Pressure");
+                map.put("description", pression);
+                map.put("img", String.valueOf(R.drawable.pressure));
+                listItem.add(map);
+
+                SimpleAdapter mSchedule = new SimpleAdapter(MainActivity.this, listItem, R.layout.affichageitem,
+                        new String[]{"img", "titre", "description"}, new int[]{R.id.img, R.id.titre, R.id.description});
+
+                maListViewPerso.setAdapter(mSchedule);
+                cardView.setVisibility(View.VISIBLE);
+                secondCardView.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -150,5 +149,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    }
+}
 

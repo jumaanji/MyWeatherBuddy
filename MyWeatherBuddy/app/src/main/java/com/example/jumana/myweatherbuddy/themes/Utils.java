@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.example.jumana.myweatherbuddy.MainActivity;
+import com.example.jumana.myweatherbuddy.Params;
 import com.example.jumana.myweatherbuddy.R;
 
 public class Utils {
@@ -26,7 +27,7 @@ public class Utils {
     public static void changeToTheme(Activity activity, int theme, Context context) {
         sTheme = theme;
         activity.finish();
-        onActivityCreateSetTheme(activity, MainActivity.MyPREFERENCES, context);
+        onActivityCreateSetTheme(activity, Params.MyPREFERENCES, context);
         activity.startActivity(new Intent(activity, MainActivity.class));
     }
 

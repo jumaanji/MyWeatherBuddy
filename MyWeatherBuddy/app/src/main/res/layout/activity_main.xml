@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -20,62 +21,99 @@
         android:layout_alignParentStart="true"
         android:layout_gravity="left|bottom" />
 
-    <TextView
-        android:layout_width="250dp"
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:id="@+id/FirstCardView"
+        card_view:cardBackgroundColor="@color/transparent"
+        android:visibility="invisible">
+
+        <RelativeLayout
+            android:id="@+id/cardviewLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:visibility="visible">
+            <TextView
+                android:id="@+id/CityName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:text="City Name"
+                />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:adjustViewBounds="true"
+                android:id="@+id/imageView"
+                android:src="@drawable/a01d"
+                android:layout_below="@+id/CityName" />
+
+            <TextView
+                android:id="@+id/ActualTemp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:text="19°"
+                android:layout_marginLeft="250dp"
+                android:layout_gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/Desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:text="Il fait beau aujourd'hui, prends ta casquette avec toi !"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/ActualTemp"
+                android:layout_gravity="center"
+                />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/CityName"
-        android:layout_marginTop="32dp"
-        android:layout_below="@+id/editText"
-        android:textColor="@color/white"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:id="@+id/SecondCardView"
+        android:layout_below="@+id/FirstCardView"
+        android:layout_marginTop="25dp"
+        android:padding="16dp"
+        card_view:cardBackgroundColor="@color/transparent"
+        android:visibility="invisible">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-
-    <Button android:id="@+id/btnShowLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Use current Location"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button android:id="@+id/changeTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Change theme"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button"
-        android:layout_marginBottom="44dp" />
-
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="65dp"
-        android:id="@+id/editText"
-        android:layout_marginTop="54dp"
-        android:elegantTextHeight="false"
-        android:layout_below="@+id/btnShowLocation"
-        android:layout_alignLeft="@+id/CityName"
-        android:textColor="@color/white"
-        android:layout_alignStart="@+id/CityName" />
+            <ListView
+                android:id="@+id/listviewperso"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
-        android:id="@+id/button"
-        android:layout_alignBottom="@+id/editText"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/editText"
-        android:layout_toEndOf="@+id/editText" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_below="@+id/CityName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="81dp"
-        android:layout_gravity="left|bottom" />
+        android:text="Paramètre"
+        android:id="@+id/params"
+        android:layout_alignBottom="@+id/background"
+        android:layout_alignRight="@+id/background"
+        android:layout_alignEnd="@+id/background" />
 
 </RelativeLayout>
