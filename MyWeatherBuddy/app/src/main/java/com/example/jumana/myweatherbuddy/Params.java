@@ -52,7 +52,7 @@ public class Params extends AppCompatActivity {
                 gps = new GPSTracker(MainActivity.mcontext);
 
                 // check if GPS enabled
-                if(gps.canGetLocation()){
+                if (gps.canGetLocation()){
 
                     double latitude = gps.getLatitude();
                     double longitude = gps.getLongitude();
@@ -71,8 +71,10 @@ public class Params extends AppCompatActivity {
                         Launch(msg);
                     }
 
-                }else{
+                } else {
+                    Log.d("tag", "je passe par ici");
                     gps.showSettingsAlert();
+                    Log.d("tag", "je passe par ici aussi");
                 }
 
             }

@@ -12,14 +12,6 @@
     android:background="@color/black"
     tools:context="com.example.jumana.myweatherbuddy.MainActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType = "centerCrop"
-        android:id="@+id/background"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_gravity="left|bottom" />
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -30,6 +22,15 @@
         android:id="@+id/FirstCardView"
         card_view:cardBackgroundColor="@color/transparent"
         android:visibility="invisible">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType = "centerCrop"
+            android:id="@+id/background"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="left|bottom" />
 
         <RelativeLayout
             android:id="@+id/cardviewLayout"
@@ -42,7 +43,7 @@
                 android:id="@+id/CityName"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/brokenwhite"
                 android:textSize="24sp"
                 android:text="City Name"
                 />
@@ -59,10 +60,10 @@
                 android:id="@+id/ActualTemp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/brokenwhite"
                 android:textSize="24sp"
                 android:text="19°"
-                android:layout_marginLeft="250dp"
+                android:layout_marginLeft="350dp"
                 android:layout_gravity="center"
                 />
 
@@ -70,7 +71,7 @@
                 android:id="@+id/Desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/brokenwhite"
                 android:textSize="16sp"
                 android:text="Il fait beau aujourd'hui, prends ta casquette avec toi !"
                 android:layout_marginLeft="70dp"
@@ -112,8 +113,6 @@
         android:layout_height="wrap_content"
         android:text="Paramètre"
         android:id="@+id/params"
-        android:layout_alignBottom="@+id/background"
-        android:layout_alignRight="@+id/background"
-        android:layout_alignEnd="@+id/background" />
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>
