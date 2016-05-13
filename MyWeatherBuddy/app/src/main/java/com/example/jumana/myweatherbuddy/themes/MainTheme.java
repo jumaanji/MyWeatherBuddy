@@ -24,8 +24,6 @@ public class MainTheme extends Activity implements View.OnClickListener {
         findViewById(R.id.button1).setOnClickListener(this);
         findViewById(R.id.button2).setOnClickListener(this);
         findViewById(R.id.button3).setOnClickListener(this);
-        findViewById(R.id.button4).setOnClickListener(this);
-        findViewById(R.id.button5).setOnClickListener(this);
         Utils.onActivityCreateSetTheme(this, Params.MyPREFERENCES, MainTheme.this);
     }
 
@@ -54,20 +52,6 @@ public class MainTheme extends Activity implements View.OnClickListener {
                 editor.putString("theme", "blue");
                 editor.apply();
                 Utils.changeToTheme(this, Utils.THEME_BLUE, MainActivity.mcontext);
-
-                break;
-            case R.id.button4:
-                this.setTheme(R.style.FourthTheme);
-                editor.putString("theme", "vintage");
-                editor.apply();
-                Utils.changeToTheme(this, Utils.THEME_VINTAGE, MainActivity.mcontext);
-
-                break;
-            case R.id.button5:
-                this.setTheme(R.style.FifthTheme);
-                editor.putString("theme", "totoro");
-                editor.apply();
-                Utils.changeToTheme(this, Utils.THEME_TOTORO, MainActivity.mcontext);
 
                 break;
         }

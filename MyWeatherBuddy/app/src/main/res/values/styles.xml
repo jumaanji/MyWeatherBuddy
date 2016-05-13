@@ -26,16 +26,4 @@
         <item name="colorPrimaryDark">#0000F0</item>
     </style>
 
-    <style name="FourthTheme">
-        <item name="android:textColor">#515151</item>
-        <item name="colorPrimary">#0000F0</item>
-        <item name="colorPrimaryDark">#0000F0</item>
-    </style>
-
-    <style name="FifthTheme">
-        <item name="android:textColor">#515151</item>
-        <item name="colorPrimary">#0000F0</item>
-        <item name="colorPrimaryDark">#0000F0</item>
-    </style>
-
 </resources>

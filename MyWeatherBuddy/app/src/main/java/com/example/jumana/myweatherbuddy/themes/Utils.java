@@ -23,8 +23,6 @@ public class Utils {
     public final static int THEME_RED = 0;
     public final static int THEME_GREEN = 1;
     public final static int THEME_BLUE = 2;
-    public final static int THEME_VINTAGE = 3;
-    public final static int THEME_TOTORO = 4;
 
     public static void changeToTheme(Activity activity, int theme, Context context) {
         sTheme = theme;
@@ -45,12 +43,6 @@ public class Utils {
             case THEME_BLUE:
                 activity.setTheme(R.style.ThirdTheme);
                 break;
-            case THEME_VINTAGE:
-                activity.setTheme(R.style.FourthTheme);
-                break;
-            case THEME_TOTORO:
-                activity.setTheme(R.style.FifthTheme);
-                break;
         }
 
         SharedPreferences sharedpreferences;
@@ -58,7 +50,6 @@ public class Utils {
         String theme = sharedpreferences.getString("theme", "error : no theme");
         ImageView bg = (ImageView) MainActivity.mActivity.findViewById(R.id.Fullbackground);
         ImageView imageview = (ImageView) MainActivity.mActivity.findViewById(R.id.background);
-
         String uri = "";
         String uri2 = "";
 
@@ -79,15 +70,6 @@ public class Utils {
                 uri = "@drawable/mario";
                 uri2 = "@drawable/mariobg";
                 break;
-            case "vintage":
-                activity.setTheme(R.style.FourthTheme);
-                uri = "@drawable/vintage1";
-                uri2 = "@drawable/vintagebg";
-                break;
-            case "totoro":
-                activity.setTheme(R.style.FifthTheme);
-                uri = "@drawable/totoro";
-                uri2 = "@drawable/totorobg";
         }
 
         int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());

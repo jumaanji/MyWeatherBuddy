@@ -88,10 +88,10 @@ public class MainActivity extends AppCompatActivity {
                 String desc = getMap().get(response.body().getWeather().get(0).getIcon());
                 String temp = oneDigit.format(response.body().getMain().getTemp() - 273.15) + "°\n";
                 String temp_min_max =  oneDigit.format(response.body().getMain().getTempMin() - 273.15) + "° - " + oneDigit.format(response.body().getMain().getTempMax() - 273.15) + "°\n";
-                String humidity = response.body().getMain().getHumidity().toString() + "%\n";
+                String humidity = response.body().getMain().getHumidity().toString() + "\n";
                 String clouds = response.body().getClouds().getAll().toString() + "\n";
                 String wind_speed = response.body().getWind().getSpeed().toString() + " Km/h\n";
-                String pression = response.body().getMain().getPressure().toString() + " mbar\n";
+                String pression = response.body().getMain().getPressure().toString() + "\n";
 
                 String sunrise = getDateCurrentTimeZone(response.body().getSys().getSunrise());
                 String sunset = getDateCurrentTimeZone(response.body().getSys().getSunset());
@@ -125,31 +125,31 @@ public class MainActivity extends AppCompatActivity {
                 HashMap<String, String> map;
 
                 map = new HashMap<String, String>();
-                map.put("titre", "Température Min - Max");
+                map.put("titre", "Temperature Min - Max");
                 map.put("description", temp_min_max);
                 map.put("img", String.valueOf(R.drawable.thermometer));
                 listItem.add(map);
 
                 map = new HashMap<String, String>();
-                map.put("titre", "Humidité");
+                map.put("titre", "Humidity");
                 map.put("description", humidity);
                 map.put("img", String.valueOf(R.drawable.humidity));
                 listItem.add(map);
 
                 map = new HashMap<String, String>();
-                map.put("titre", "Nuages");
+                map.put("titre", "Clouds");
                 map.put("description", clouds);
                 map.put("img", String.valueOf(R.drawable.clouds));
                 listItem.add(map);
 
                 map = new HashMap<String, String>();
-                map.put("titre", "Vitesse du vent");
+                map.put("titre", "Wind Speed");
                 map.put("description", wind_speed);
                 map.put("img", String.valueOf(R.drawable.wind));
                 listItem.add(map);
 
                 map = new HashMap<String, String>();
-                map.put("titre", "Pression");
+                map.put("titre", "Pressure");
                 map.put("description", pression);
                 map.put("img", String.valueOf(R.drawable.pressure));
                 listItem.add(map);
@@ -186,10 +186,10 @@ public class MainActivity extends AppCompatActivity {
 
     public HashMap<String, String> getMap() {
         HashMap<String, String> map = new HashMap<String, String>();
-        map.put("01d", "Il fait beau aujourd'hui ! Profite de ta journée !");
+        map.put("01d", "Il fait beau aujourd'hui ! Profites de la journée !");
         map.put("01n", "Il fait beau ce soir ! Une bonne soirée calme peut te faire du bien !");
-        map.put("02d", "Tu ne verras le soleil qu'un peu aujourd'hui, il essaie de jouer à cache-cache");
-        map.put("02n", "Tu ne verras la lune qu'un peu aujourd'hui, elle essaie de jouer à cache-cache");
+        map.put("02d", "Tu ne verras le soleil qu'un peu aujourd'hui, il essaaie de jouer à cache-cache");
+        map.put("02n", "Tu ne verras la lune qu'un peu aujourd'hui, elle essaaie de jouer à cache-cache");
         map.put("03d", "Le ciel est couvert par beaucoup de nuages aujourd'hui, mais cela ne t'empêche pas de faire une sortie !");
         map.put("03n", "Le ciel est couvert par beaucoup de nuages cette nuit, mais cela ne t'empêche pas de faire une soirée !");
         map.put("04d", "Les nuages sont gris ! prévois un parapluie au cas où");

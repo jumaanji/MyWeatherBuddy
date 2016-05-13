@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -11,126 +10,76 @@
     android:background="@color/black"
     tools:context="com.example.jumana.myweatherbuddy.Params">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:id="@+id/FirstParam"
-        card_view:cardBackgroundColor="@color/transparent" >
+    <Button style="@style/Widget.AppCompat.Button.Colored"
+        android:id="@+id/btnShowLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use current Location"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button" />
 
-        <RelativeLayout
-            android:id="@+id/CityLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:orientation="vertical"
-            android:visibility="visible">
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="65dp"
+        android:id="@+id/editText"
+        android:elegantTextHeight="false"
+        android:textColor="@color/white"
+        android:layout_alignBottom="@+id/button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-            <Button style="@style/Widget.AppCompat.Button.Colored"
-                android:id="@+id/btnShowLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Utiliser la géolocalisation"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+    <Button style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/button"
+        android:layout_below="@+id/btnShowLocation"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="50dp" />
 
-            <EditText
-                android:layout_width="200dp"
-                android:layout_height="65dp"
-                android:id="@+id/editText"
-                android:elegantTextHeight="false"
-                android:textColor="@color/white"
-                android:layout_alignParentBottom="true"
-                android:layout_alignLeft="@+id/textView"
-                android:layout_alignStart="@+id/textView" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="City :"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/white" />
 
-            <Button style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rechercher"
-                android:id="@+id/button"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Theme :"
+        android:id="@+id/textView2"
+        android:textColor="@color/white"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Localisation : "
-                android:id="@+id/textView"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:textColor="@color/white" />
+    <Button style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Theme"
+        android:id="@+id/changeTheme"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignRight="@+id/btnShowLocation"
+        android:layout_alignEnd="@+id/btnShowLocation" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Entrer le nom de la ville :"
-                android:id="@+id/textView3"
-                android:textColor="@color/white"
-                android:layout_above="@+id/editText"
-                android:layout_alignLeft="@+id/editText"
-                android:layout_alignStart="@+id/editText" />
-
-
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="325dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:id="@+id/SecondParam"
-        android:layout_below="@+id/FirstParam"
-        android:layout_marginTop="25dp"
-        android:padding="16dp"
-        card_view:cardBackgroundColor="@color/transparent" >
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Thème :"
-                android:id="@+id/textView2"
-                android:textColor="@color/white"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:scaleType = "centerCrop"
-                android:id="@+id/themeImage"
-                android:src="@drawable/change"
-                android:layout_marginTop="55dp"
-                android:layout_marginRight="10dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_gravity="left|bottom" />
-
-            <Button style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Changer le Thème"
-                android:id="@+id/changeTheme"
-                android:layout_alignParentBottom="true"
-                android:layout_alignRight="@+id/themeImage"
-                android:layout_alignEnd="@+id/themeImage" />
-
-        </RelativeLayout>
-
-     </android.support.v7.widget.CardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Enter city name :"
+        android:id="@+id/textView3"
+        android:layout_above="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/white" />
 
 </RelativeLayout>
