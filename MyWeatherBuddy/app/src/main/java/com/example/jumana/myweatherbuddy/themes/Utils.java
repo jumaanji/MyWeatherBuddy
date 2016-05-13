@@ -48,30 +48,36 @@ public class Utils {
         SharedPreferences sharedpreferences;
         sharedpreferences = context.getSharedPreferences(prefs, context.MODE_PRIVATE);
         String theme = sharedpreferences.getString("theme", "error : no theme");
+        ImageView bg = (ImageView) MainActivity.mActivity.findViewById(R.id.Fullbackground);
         ImageView imageview = (ImageView) MainActivity.mActivity.findViewById(R.id.background);
-        Log.d("tag", String.valueOf(imageview));
         String uri = "";
+        String uri2 = "";
 
         switch (theme) {
             default:
             case "red":
                 activity.setTheme(R.style.FirstTheme);
                 uri = "@drawable/starwars";
+                uri2 = "@drawable/starwarsbg";
                 break;
             case "green":
                 activity.setTheme(R.style.SecondTheme);
                 uri = "@drawable/pokemon";
+                uri2 = "@drawable/pokemonbg";
                 break;
             case "blue":
                 activity.setTheme(R.style.ThirdTheme);
                 uri = "@drawable/mario";
+                uri2 = "@drawable/mariobg";
                 break;
         }
 
         int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
-
+        int bgResource = context.getResources().getIdentifier(uri2, null, context.getPackageName());
         Drawable res = context.getResources().getDrawable(imageResource);
+        Drawable bgRes = context.getResources().getDrawable(bgResource);
         imageview.setImageDrawable(res);
+        bg.setImageDrawable(bgRes);
     }
 }
 

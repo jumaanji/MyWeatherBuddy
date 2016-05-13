@@ -12,6 +12,14 @@
     android:background="@color/black"
     tools:context="com.example.jumana.myweatherbuddy.MainActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType = "centerCrop"
+        android:id="@+id/Fullbackground"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="left|bottom" />
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -86,7 +94,7 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="325dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:id="@+id/SecondCardView"
@@ -99,6 +107,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType = "centerCrop"
+                android:id="@+id/secondBg"
+                android:src="@drawable/cardview"
+                android:alpha="0.5"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="left|bottom" />
+
             <ListView
                 android:id="@+id/listviewperso"
                 android:layout_width="fill_parent"
@@ -108,11 +127,103 @@
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 
-    <Button
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:id="@+id/ThirdCardView"
+        android:layout_below="@+id/SecondCardView"
+        android:layout_marginTop="25dp"
+        android:padding="16dp"
+        card_view:cardBackgroundColor="@color/transparent"
+        android:visibility="invisible">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType = "centerCrop"
+                android:id="@+id/thirdBg"
+                android:src="@drawable/cardview"
+                android:alpha="0.5"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="left|bottom" />
+
+            <TextView
+                android:id="@+id/SunriseText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Sunrise : "
+                />
+
+            <TextView
+                android:id="@+id/Sunrise"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginTop="16dp"
+                android:text="Sunrise"
+                />
+
+            <ImageView
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:adjustViewBounds="true"
+                android:id="@+id/sunriseImage"
+                android:src="@drawable/a01d"
+                android:layout_marginLeft="116dp"
+                android:layout_below="@+id/Sunrise" />
+
+            <TextView
+                android:id="@+id/SunsetText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:layout_marginLeft="260dp"
+                android:layout_marginTop="16dp"
+                android:text="Sunset : "
+                />
+
+            <TextView
+                android:id="@+id/Sunset"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="375dp"
+                android:layout_marginTop="16dp"
+                android:text="Sunset"
+                />
+
+            <ImageView
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:adjustViewBounds="true"
+                android:id="@+id/sunsetImage"
+                android:src="@drawable/a01n"
+                android:layout_marginLeft="350dp"
+                android:layout_below="@+id/Sunset" />
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <Button style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Paramètre"
+        android:text="Parameters"
         android:id="@+id/params"
-        android:layout_alignParentBottom="true" />
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>

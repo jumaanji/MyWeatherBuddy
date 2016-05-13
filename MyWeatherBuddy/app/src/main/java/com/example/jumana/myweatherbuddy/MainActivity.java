@@ -28,11 +28,16 @@ import com.example.jumana.myweatherbuddy.themes.MainTheme;
 import com.example.jumana.myweatherbuddy.themes.Utils;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,9 +50,12 @@ public class MainActivity extends AppCompatActivity {
     Button params;
     CardView cardView;
     CardView secondCardView;
+    CardView thirdCardView;
     TextView cityname;
     TextView weather;
     TextView Desc;
+    TextView Sunrise;
+    TextView Sunset;
     ImageView imageview;
     ListView maListViewPerso;
     DecimalFormat oneDigit = new DecimalFormat("#,##0.0");
@@ -76,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         WeatherAPI.Factory.getInstance().getCity(search, APPID, "fr").enqueue(new Callback<City>() {
             @Override
             public void onResponse(Call<City> call, Response<City> response) {
-                String name = response.body().getName() + "\n";
+                String name = response.body().getName() + ", " + response.body().getSys().getCountry() + "\n";
                 String desc = response.body().getWeather().get(0).getMain() + " (" + response.body().getWeather().get(0).getDescription() + ")\n";
                 String temp = oneDigit.format(response.body().getMain().getTemp() - 273.15) + "°\n";
                 String temp_min_max =  oneDigit.format(response.body().getMain().getTempMin() - 273.15) + "° - " + oneDigit.format(response.body().getMain().getTempMax() - 273.15) + "°\n";
@@ -84,15 +92,26 @@ public class MainActivity extends AppCompatActivity {
                 String clouds = response.body().getClouds().getAll().toString() + "\n";
                 String wind_speed = response.body().getWind().getSpeed().toString() + " Km/h\n";
                 String pression = response.body().getMain().getPressure().toString() + "\n";
+
+                String sunrise = getDateCurrentTimeZone(response.body().getSys().getSunrise());
+                String sunset = getDateCurrentTimeZone(response.body().getSys().getSunset());
+
                 cityname = (TextView) findViewById(R.id.CityName);
                 weather = (TextView) findViewById(R.id.ActualTemp);
                 Desc = (TextView) findViewById(R.id.Desc);
+                Sunrise = (TextView) findViewById(R.id.Sunrise);
+                Sunset = (TextView) findViewById(R.id.Sunset);
+
                 cardView = (CardView) findViewById(R.id.FirstCardView);
                 secondCardView = (CardView) findViewById(R.id.SecondCardView);
+                thirdCardView = (CardView) findViewById(R.id.ThirdCardView);
+
 
                 cityname.setText(name);
                 weather.setText(temp);
                 Desc.setText(desc);
+                Sunrise.setText(sunrise);
+                Sunset.setText(sunset);
                 String uri = "@drawable/a"+response.body().getWeather().get(0).getIcon();
 
                 int imageResource = getResources().getIdentifier(uri, null, getPackageName());
@@ -141,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
                 maListViewPerso.setAdapter(mSchedule);
                 cardView.setVisibility(View.VISIBLE);
                 secondCardView.setVisibility(View.VISIBLE);
+                thirdCardView.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -148,6 +168,20 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Error", t.getMessage());
             }
         });
+    }
+
+    public  String getDateCurrentTimeZone(long timestamp) {
+        try{
+            Calendar calendar = Calendar.getInstance();
+            TimeZone tz = TimeZone.getDefault();
+            calendar.setTimeInMillis(timestamp * 1000);
+            calendar.add(Calendar.MILLISECOND, tz.getOffset(calendar.getTimeInMillis()));
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+            Date currenTimeZone = (Date) calendar.getTime();
+            return sdf.format(currenTimeZone);
+        }catch (Exception e) {
+        }
+        return "";
     }
 }
 
