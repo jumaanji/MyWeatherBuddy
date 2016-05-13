@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<City> call, Response<City> response) {
                 String name = response.body().getName() + ", " + response.body().getSys().getCountry() + "\n";
-                String desc = response.body().getWeather().get(0).getMain() + " (" + response.body().getWeather().get(0).getDescription() + ")\n";
+                String desc = getMap().get(response.body().getWeather().get(0).getIcon());
                 String temp = oneDigit.format(response.body().getMain().getTemp() - 273.15) + "°\n";
                 String temp_min_max =  oneDigit.format(response.body().getMain().getTempMin() - 273.15) + "° - " + oneDigit.format(response.body().getMain().getTempMax() - 273.15) + "°\n";
                 String humidity = response.body().getMain().getHumidity().toString() + "\n";
@@ -182,6 +182,30 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e) {
         }
         return "";
+    }
+
+    public HashMap<String, String> getMap() {
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("01d", "Il fait beau aujourd'hui ! Profites de la journée !");
+        map.put("01n", "Il fait beau ce soir ! Une bonne soirée calme peut te faire du bien !");
+        map.put("02d", "Tu ne verras le soleil qu'un peu aujourd'hui, il essaaie de jouer à cache-cache");
+        map.put("02n", "Tu ne verras la lune qu'un peu aujourd'hui, elle essaaie de jouer à cache-cache");
+        map.put("03d", "Le ciel est couvert par beaucoup de nuages aujourd'hui, mais cela ne t'empêche pas de faire une sortie !");
+        map.put("03n", "Le ciel est couvert par beaucoup de nuages cette nuit, mais cela ne t'empêche pas de faire une soirée !");
+        map.put("04d", "Les nuages sont gris ! prévois un parapluie au cas où");
+        map.put("04n", "Les nuages sont gris ! Si tu comptes sortir, prévois un parapluie au cas où");
+        map.put("09d", "Il pleut des cordes ! prends ton parapluie ou ca sera une douche");
+        map.put("09n", "Il pleut des cordes ! si tu es dehors, j'espère que tu as ton parapluie ?");
+        map.put("10d", "Il pleut un peu ! prends ton manteau à capuche");
+        map.put("10n", "Il pleut un peu ! A ta place, je passerai ma soirée chez moi bien au chaud");
+        map.put("11d", "OHHHH ! L'orage ! Tu n'as pas peur ?");
+        map.put("11n", "OHHHH ! L'orage ! Une histoire d'horreur avant de dormir ?");
+        map.put("13d", "Il neige !! prépare les gants !");
+        map.put("13n", "Il neige !! reste bien au chaud chez toi c'est mieux !");
+        map.put("50d", "Trop de brouillard.. Regarde bien là où tu vas !");
+        map.put("50d", "Trop de brouillard.. Ah mais c'est pas grave d toute façon il fait nuit");
+
+        return map;
     }
 }
 

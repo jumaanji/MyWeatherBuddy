@@ -83,7 +83,7 @@
                 android:textSize="16sp"
                 android:text="Il fait beau aujourd'hui, prends ta casquette avec toi !"
                 android:layout_marginLeft="70dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_below="@id/ActualTemp"
                 android:layout_gravity="center"
                 />
