@@ -82,11 +82,12 @@
                 android:textColor="@color/brokenwhite"
                 android:textSize="16sp"
                 android:text="Il fait beau aujourd'hui, prends ta casquette avec toi !"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="5dp"
-                android:layout_below="@id/ActualTemp"
                 android:layout_gravity="center"
-                />
+                android:layout_alignBottom="@+id/imageView"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="75dp"
+
+                android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
 
@@ -158,9 +159,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="35dp"
                 android:layout_marginTop="16dp"
-                android:text="Sunrise : "
+                android:text="Levée : "
                 />
 
             <TextView
@@ -179,7 +180,7 @@
                 android:adjustViewBounds="true"
                 android:id="@+id/sunriseImage"
                 android:src="@drawable/a01d"
-                android:layout_marginLeft="116dp"
+                android:layout_marginLeft="65dp"
                 android:layout_below="@+id/Sunrise" />
 
             <TextView
@@ -189,7 +190,7 @@
                 android:textSize="24sp"
                 android:layout_marginLeft="260dp"
                 android:layout_marginTop="16dp"
-                android:text="Sunset : "
+                android:text="Couché : "
                 />
 
             <TextView
@@ -209,7 +210,7 @@
                 android:adjustViewBounds="true"
                 android:id="@+id/sunsetImage"
                 android:src="@drawable/a01n"
-                android:layout_marginLeft="350dp"
+                android:layout_marginLeft="300dp"
                 android:layout_below="@+id/Sunset" />
 
 
@@ -219,7 +220,7 @@
     <Button style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Parameters"
+        android:text="Paramètres"
         android:id="@+id/params"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"

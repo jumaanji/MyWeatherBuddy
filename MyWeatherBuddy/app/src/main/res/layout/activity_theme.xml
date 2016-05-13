@@ -40,4 +40,28 @@
         android:drawableLeft="@drawable/mario"
         android:drawablePadding="10dp" />
 
+    <Button style="@style/Widget.AppCompat.Button.Colored"
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vintage Theme"
+        android:layout_marginTop="25dp"
+        android:drawableLeft="@drawable/vintage1"
+        android:drawablePadding="10dp"
+        android:layout_below="@+id/button1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button style="@style/Widget.AppCompat.Button.Colored"
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Totoro Theme"
+        android:layout_marginTop="25dp"
+        android:drawableLeft="@drawable/totoro"
+        android:drawablePadding="10dp"
+        android:layout_below="@+id/button4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
